@@ -13,15 +13,12 @@
     <div id="header"><h1>Eurovision Drinking Game</h1>TURIN 2022</div>
     <div id="wrapper">
         <div id="content">
-        <div id="rules">
+            <div id="rules"></div>
         </div>
-        </div>
-        <div id="footer">
-        <button onclick="myFunctionSE()">🇸🇪 Svenska</button>
-        <button onclick="myFunctionEN()">🇬🇧 English</button>
-        </div>
-   
-
+    </div>
+    <div id="footer">
+            <button onclick="myFunctionSE()">🇸🇪 Svenska</button>
+            <button onclick="myFunctionEN()">🇬🇧 English</button>
         </div>
     <script>
         fetch('rules.json')
@@ -44,9 +41,6 @@
             }
         }
     </script>
-    
-
-
 <script>
 function myFunctionEN() {
     fetch('rules.json')
@@ -97,6 +91,5 @@ function appendDataEN(data) {
             }
         }
 </script>
-
 </body>
 </html>
