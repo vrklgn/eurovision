@@ -1,5 +1,5 @@
 body {
-	background-color: #0a0a2d;
+	background-color: #221F30;
 	font-family: 'Noto Sans HK', sans-serif;
 	text-align: center;
 	color: #ffffff;
@@ -18,7 +18,7 @@ button{
 	font-size: .85rem;
     border: transparent;
     border-radius: 9999px;
-    background-color: white;
+    background-color: #FFFFFF;
     padding: 5px 20px 5px 20px;
     margin: 20px;
     font-weight: bold;
@@ -35,7 +35,7 @@ button:hover {
 }
 
 #footer{
-	background-color: #294dc1;
+	background-color: #221F30;
 	flex-basis: 100%;
 	display: flex;
 	align-items: center;
@@ -48,13 +48,13 @@ h1 {
 }
 
 #header {
-	background-color:  #0a0a2d;
+	background-color:  #221F30;
 	flex-basis: 100%;
 	height: fit-content;
 }
 
 #wrapper {
-	background-color:  #0a0a2d;
+	background-color:  #221F30;
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
@@ -62,18 +62,19 @@ h1 {
 }
 
 #content {
-
+	margin: 1px;
+	display: flex;
+	flex-wrap: wrap;
 }
 
 
 #rules {
-
 	text-align: left;
 	font-size: 0.9em;
 	line-height: 2em;
 	column-count: 1;
-	background-color:  #0a0a2d;
-	padding-bottom: 30px;
+	background-color:  #221F30;
+	padding-bottom: 20px;
 	padding-right: 20px;
 	padding-left: 20px;
 	font-weight: 400;
