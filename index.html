@@ -11,6 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+HK:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <div id="header"><h1>🕺 Eurovision Drinking Game 💃</h1><sup>TURIN 2022</sup></div>
     <div id="wrapper">
         <div id="content">
@@ -44,6 +45,9 @@
     </script>
 <script>
 function myFunctionEN() {
+    confetti({
+        spread: 180
+    });
     fetch('rules.json')
             .then(function (response) {
                 return response.json();
@@ -56,6 +60,9 @@ function myFunctionEN() {
             });
         }
 function myFunctionSE() {
+    confetti({
+        spread: 180
+    });
     fetch('rules.json')
             .then(function (response) {
                 return response.json();
