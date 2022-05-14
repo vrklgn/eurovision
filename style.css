@@ -46,6 +46,7 @@ button:hover {
 h1 {
 	font-size: 1.4em;
 	font-weight: 500;
+	margin:  0px;
 }
 
 #header {
@@ -53,7 +54,7 @@ h1 {
 	flex-basis: 100%;
 	height: fit-content;
 	color: #000;
-	margin-bottom: 10px;
+	line-height: 1.5em;
 }
 
 #wrapper {
@@ -62,10 +63,11 @@ h1 {
 	justify-content: center;
 	flex-wrap: wrap;
 	align-items: stretch;
+
 }
 
 #content {
-	margin: 1px;
+	margin-top: 1em;
 	display: flex;
 	flex-wrap: wrap;
 }
@@ -84,6 +86,5 @@ h1 {
 }
 
 #wrapper, html, body {
-    height: 100%;
     margin: 0;
 }
