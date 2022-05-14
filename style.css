@@ -54,7 +54,7 @@ h1 {
 	flex-basis: 100%;
 	height: fit-content;
 	color: #000;
-	line-height: 1.5em;
+	line-height: 25px;
 }
 
 #wrapper {
