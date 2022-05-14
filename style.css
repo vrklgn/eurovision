@@ -1,5 +1,5 @@
 body {
-	background-color: #221F30;
+	background-color: #E9E9EB;
 	font-family: 'Noto Sans HK', sans-serif;
 	text-align: center;
 	color: #ffffff;
@@ -87,4 +87,5 @@ h1 {
 
 #wrapper, html, body {
     margin: 0;
+    height: 100%;
 }
