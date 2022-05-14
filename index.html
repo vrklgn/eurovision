@@ -20,6 +20,7 @@
     </div>
     <div id="footer">
             <button onclick="myFunctionSE()">🇸🇪 Svenska</button>
+            <button onclick="confettibutt()">🎉</button>
             <button onclick="myFunctionEN()">🇬🇧 English</button>
         </div>
     <script>
@@ -45,9 +46,6 @@
     </script>
 <script>
 function myFunctionEN() {
-    confetti({
-        spread: 180
-    });
     fetch('rules.json')
             .then(function (response) {
                 return response.json();
@@ -59,10 +57,11 @@ function myFunctionEN() {
                 console.log('error: ' + err);
             });
         }
+
+function confettibutt(){
+    confetti({spread: 180})
+}
 function myFunctionSE() {
-    confetti({
-        spread: 180
-    });
     fetch('rules.json')
             .then(function (response) {
                 return response.json();
