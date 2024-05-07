@@ -65,6 +65,7 @@ h1 {
 	font-size: 1.4em;
 	font-weight: 500;
 	margin:  0px;
+	font-weight: 800;
 }
 
 #header {
@@ -73,7 +74,7 @@ h1 {
 	height: fit-content;
 	color: #000;
 	line-height: 25px;
-	font-weight: 800;
+	font-weight: 400;
 }
 
 #wrapper {
