@@ -38,7 +38,7 @@ button:hover {
 }
 
 #footer{
-	background-color: #040241;
+	background-color: #000;
 	flex-basis: 100%;
 	display: flex;
 	align-items: center;
@@ -53,7 +53,7 @@ h1 {
 }
 
 #header {
-	background-color:  #E9E9EB;
+	background-color: red;
 	flex-basis: 100%;
 	height: fit-content;
 	color: #000;
