@@ -53,10 +53,10 @@ h1 {
 }
 
 #header {
-	background-color: red;
+	background-color: #f0f0f0 ;
 	flex-basis: 100%;
 	height: fit-content;
-	color: #000;
+	color: #FFF;
 	line-height: 25px;
 	font-weight: 400;
 }
