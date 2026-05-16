@@ -1,92 +1,224 @@
-
-
-body {
-	background-color: #000;
-	font-family:  "Readex Pro", sans-serif;
-	text-align: center;
-	color: #ffffff;
-	margin: 0;
-    }
-
-li {
-	line-height: normal;
-	padding-bottom: 16px;
+:root {
+    --pink: #F10D59;
+    --purple: #5A22A9;
+    --navy: #040241;
+    --navy-deep: #02011F;
+    --white: #FFFFFF;
+    --ink: #1B0B2E;
 }
 
-img {
-height:2.5ex;}
-
-button{
-	font-size: .85rem;
-    border: transparent;
-    border-radius: 9999px;
-    background-color: #FFFFFF;
-    padding: 5px 20px 5px 20px;
-    margin: 20px;
-    font-weight: bold;
-    color: #000;
-	
-}
-
-.break {
-  flex-basis: 100%;
-  height: 0;
-}
-
-button:hover {
-	cursor:pointer;
-}
-
-#footer{
-	background-color: #000;
-	flex-basis: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-h1 {
-	font-size: 1.4em;
-	font-weight: 500;
-	margin:  0px;
-	font-weight: 800;
-}
-
-#header {
-	background-color: #EA3323;
-	flex-basis: 100%;
-	height: fit-content;
-	color: #FFFFFF;
-	line-height: 25px;
-	font-weight: 400;
-}
-
-#wrapper {
-	background-color:  #000;
-	display: flex;
-	justify-content: center;
-	flex-wrap: wrap;
-	align-items: stretch;
-
-}
-
-#content {
-	margin-top: 10px;
-	display: flex;
-	flex-wrap: wrap;
-}
-
-
-#rules {
-	text-align: left;
-	font-size: 0.85em;
-	column-count: 1;
-	background-color:  #000;
-	font-weight: 400;
-}
+* { box-sizing: border-box; }
 
 html, body {
     margin: 0;
+    padding: 0;
     height: 100%;
-    background-color: #000;
+    width: 100%;
+    overflow: hidden;
+    background: var(--navy-deep);
+    color: var(--white);
+    font-family: "Bricolage Grotesque", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    background:
+        radial-gradient(circle at 80% 0%, rgba(241, 13, 89, 0.35), transparent 55%),
+        radial-gradient(circle at 0% 100%, rgba(90, 34, 169, 0.55), transparent 60%),
+        linear-gradient(180deg, #0A0530 0%, var(--navy-deep) 100%);
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+
+/* ---------- Header ---------- */
+#header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px 8px;
+    flex: 0 0 auto;
+}
+
+#header .heart {
+    width: 34px;
+    height: 30px;
+    flex-shrink: 0;
+    filter: drop-shadow(0 2px 8px rgba(241, 13, 89, 0.5));
+}
+
+#header .brand {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+    min-width: 0;
+}
+
+#header .wordmark {
+    font-weight: 800;
+    font-size: clamp(1.25rem, 6.5vw, 1.7rem);
+    letter-spacing: -0.02em;
+    color: var(--white);
+    font-stretch: 75%;
+}
+
+#header .wordmark .dot {
+    color: var(--pink);
+}
+
+#header .tagline {
+    margin-top: 3px;
+    font-size: clamp(0.65rem, 3vw, 0.8rem);
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+/* ---------- Language toggle ---------- */
+#lang {
+    display: flex;
+    gap: 6px;
+    padding: 0 16px 8px;
+    flex: 0 0 auto;
+}
+
+#lang button {
+    flex: 1;
+    appearance: none;
+    border: 1.5px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.04);
+    color: rgba(255, 255, 255, 0.75);
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 7px 10px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+    letter-spacing: 0.02em;
+}
+
+#lang button[aria-selected="true"] {
+    background: var(--pink);
+    border-color: var(--pink);
+    color: var(--white);
+    box-shadow: 0 4px 14px rgba(241, 13, 89, 0.4);
+}
+
+/* ---------- Rules card ---------- */
+#content {
+    flex: 1 1 auto;
+    min-height: 0;
+    margin: 0 12px 8px;
+    padding: 12px 14px;
+    border-radius: 22px;
+    background: rgba(8, 4, 36, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    overflow: hidden;
+    display: flex;
+}
+
+#rules {
+    list-style: none;
+    counter-reset: rule;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    text-align: left;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+#rules li {
+    counter-increment: rule;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    padding: 3px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+#rules li:last-child {
+    border-bottom: none;
+}
+
+#rules li::before {
+    content: counter(rule);
+    flex: 0 0 auto;
+    min-width: 1.6em;
+    color: var(--pink);
+    font-weight: 800;
+    font-size: 0.9em;
+    text-align: right;
+}
+
+/* ---------- Footer ---------- */
+#footer {
+    flex: 0 0 auto;
+    text-align: center;
+    padding: 4px 16px 8px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* ---------- Confetti FAB ---------- */
+#confetti-fab {
+    position: fixed;
+    right: calc(14px + env(safe-area-inset-right));
+    bottom: calc(28px + env(safe-area-inset-bottom));
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: var(--pink);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(241, 13, 89, 0.55), 0 0 0 4px rgba(241, 13, 89, 0.12);
+    transition: transform 0.15s ease;
+    z-index: 10;
+}
+
+#confetti-fab:active {
+    transform: scale(0.92);
+}
+
+#confetti-fab svg {
+    width: 20px;
+    height: 18px;
+}
+
+/* ---------- Tweaks for short / landscape phones ---------- */
+@media (max-height: 480px) {
+    #header { padding: 6px 14px 4px; }
+    #header .heart { width: 26px; height: 24px; }
+    #lang { padding: 0 14px 6px; }
+    #lang button { padding: 5px 8px; font-size: 0.78rem; }
+    #content { margin: 0 10px 6px; padding: 8px 12px; border-radius: 16px; }
+    #footer { padding: 2px 14px 4px; font-size: 0.6rem; }
+    #confetti-fab { width: 38px; height: 38px; bottom: 10px; }
+}
+
+/* Wide-but-short (landscape phones): split rules into two columns */
+@media (max-height: 480px) and (min-width: 560px) {
+    #rules {
+        column-count: 2;
+        column-gap: 18px;
+        column-rule: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    #rules li {
+        break-inside: avoid;
+        border-bottom: none;
+        padding: 2px 0;
+    }
 }

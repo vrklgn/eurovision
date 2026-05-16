@@ -2,102 +2,97 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="theme-color" content="#EA3323">
-    <title>Eurovision Drinking Game</title>
+    <meta name="theme-color" content="#040241">
+    <title>Eurovision Drinking Game · Vienna 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&display=swap" rel="stylesheet">
     <link type="text/css" media="screen" rel="stylesheet" href="style.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@160..700&display=swap" rel="stylesheet">
 </head>
 <body>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    <div id="header"><h1>🕺 Eurovision Drinking Game 💃</h1><sup>2026</sup></div>
-    <div id="wrapper">
-        <div id="content">
-            <div id="rules"></div>
+
+    <header id="header">
+        <svg class="heart" viewBox="0 0 32 28" aria-hidden="true">
+            <defs>
+                <linearGradient id="heartGrad" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#F10D59"/>
+                    <stop offset="60%" stop-color="#B81470"/>
+                    <stop offset="100%" stop-color="#5A22A9"/>
+                </linearGradient>
+            </defs>
+            <path fill="url(#heartGrad)" d="M16 26S2 17.5 2 9.5C2 5 5.5 2 9.5 2c2.5 0 5 1.5 6.5 4 1.5-2.5 4-4 6.5-4C26.5 2 30 5 30 9.5 30 17.5 16 26 16 26z"/>
+        </svg>
+        <div class="brand">
+            <div class="wordmark">Eurovision<span class="dot">.</span></div>
+            <div class="tagline">Drinking Game · Vienna 2026</div>
         </div>
-    </div>
-    <div id="footer">
-            <button onclick="myFunctionSE()">🇸🇪</button>
-            <button onclick="confettibutt()">🎉</button>
-            <button onclick="myFunctionEN()">🇬🇧</button>
-        </div>
+    </header>
+
+    <nav id="lang" role="tablist" aria-label="Language">
+        <button id="btn-se" role="tab" aria-selected="true" onclick="render('se')">Svenska</button>
+        <button id="btn-en" role="tab" aria-selected="false" onclick="render('en')">English</button>
+    </nav>
+
+    <main id="content">
+        <ol id="rules"></ol>
+    </main>
+
+    <button id="confetti-fab" aria-label="Celebrate" onclick="confettibutt()">
+        <svg viewBox="0 0 32 28" aria-hidden="true">
+            <path fill="currentColor" d="M16 26S2 17.5 2 9.5C2 5 5.5 2 9.5 2c2.5 0 5 1.5 6.5 4 1.5-2.5 4-4 6.5-4C26.5 2 30 5 30 9.5 30 17.5 16 26 16 26z"/>
+        </svg>
+    </button>
+
+    <footer id="footer">United by Music</footer>
+
     <script>
+        let rulesData = [];
+        let currentLang = 'se';
+
         fetch('rules.json')
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (data) {
-                appendData(data);
-            })
-            .catch(function (err) {
-                console.log('error: ' + err);
-            });
-        function appendData(data) {
-            var mainContainer = document.getElementById("rules");
-            var ol = document.createElement("OL")
-            for (var i = 0; i < data.length; i++) {
-                var li = document.createElement("li");
-                li.innerHTML = data[i].se;
-                mainContainer.appendChild(li);
+            .then(r => r.json())
+            .then(data => { rulesData = data; render('se'); })
+            .catch(err => console.log('error: ' + err));
+
+        function render(lang) {
+            currentLang = lang;
+            const ol = document.getElementById('rules');
+            ol.innerHTML = '';
+            for (const rule of rulesData) {
+                const li = document.createElement('li');
+                li.innerHTML = rule[lang];
+                ol.appendChild(li);
+            }
+            document.getElementById('btn-se').setAttribute('aria-selected', lang === 'se');
+            document.getElementById('btn-en').setAttribute('aria-selected', lang === 'en');
+            fitRules();
+        }
+
+        function fitRules() {
+            const ol = document.getElementById('rules');
+            const main = document.getElementById('content');
+            let size = 17;
+            ol.style.fontSize = size + 'px';
+            while ((ol.scrollHeight > main.clientHeight || ol.scrollWidth > main.clientWidth) && size > 8) {
+                size -= 0.5;
+                ol.style.fontSize = size + 'px';
             }
         }
+
+        function confettibutt() {
+            confetti({
+                ticks: 120,
+                particleCount: 160,
+                spread: 180,
+                colors: ['#F10D59', '#5A22A9', '#FFFFFF', '#FFD400']
+            });
+        }
+
+        window.addEventListener('resize', fitRules);
+        window.addEventListener('orientationchange', () => setTimeout(fitRules, 150));
     </script>
-<script>
-function myFunctionEN() {
-    fetch('rules.json')
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (data) {
-                appendDataEN(data);
-            })
-            .catch(function (err) {
-                console.log('error: ' + err);
-            });
-        }
-
-function confettibutt(){
-    confetti({ticks: 100, particleCount: 150, spread: 180})
-}
-function myFunctionSE() {
-    fetch('rules.json')
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (data) {
-                appendDataSE(data);
-            })
-            .catch(function (err) {
-                console.log('error: ' + err);
-            });
-        }
-
-function appendDataEN(data) {
-            var mainContainer = document.getElementById("rules");
-    mainContainer.innerHTML="";
-    
-            var ol = document.createElement("OL")
-            for (var i = 0; i < data.length; i++) {
-                var li = document.createElement("li");
-                li.innerHTML = data[i].en;
-                mainContainer.appendChild(li);
-            }
-        }
-    
-    function appendDataSE(data) {
-            var mainContainer = document.getElementById("rules");
-    mainContainer.innerHTML="";
-    
-            var ol = document.createElement("OL")
-            for (var i = 0; i < data.length; i++) {
-                var li = document.createElement("li");
-                li.innerHTML = data[i].se;
-                mainContainer.appendChild(li);
-            }
-        }
-</script>
 </body>
 </html>
